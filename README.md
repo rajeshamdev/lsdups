@@ -1,4 +1,4 @@
-# lsdups - List Duplicate Files or Objects
+# List Duplicate Files or Objects
 
 **Problem statement**: The idea of building this tool is conceived out of personal necessity. I wanted a tool that provides
 insights into files of a directory. I have machines where we duplicated copies from our digital SLR camera. But, it was
