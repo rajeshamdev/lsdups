@@ -11,9 +11,17 @@ One goroutine iterates through the directory sending the files to 10 worker goro
 and updates the map (which maintains duplicates).
 
 ```
-git clone https://github.com/rajeshamdev/lsdups.git
-go build -mod=vendor -o dups main.go
-dups ls (this picks up the files from the current working dir)
+mars ~/rajeshamdevGIT/lsdups $ git clone https://github.com/rajeshamdev/lsdups.git
+mars ~/rajeshamdevGIT/lsdups $ cd lsdups
+mars ~/rajeshamdevGIT/lsdups/lsdups $ go build -mod=vendor -o dups main.go
+mars ~/rajeshamdevGIT/lsdups/lsdups $ ./dups ls
+CPUs : 8
+Goroutines : 1
+all tasks processed
+b1119f3b473e9c3fab3fc10c957603778fdc796b869ce34f3b887074fd5fd943: [.git/refs/heads/main .git/refs/remotes/origin/main]
+28b632f327b4b5ab0d2a673149848e3826bf5d0b6afd5ccdda33a7bda54f0190: [.git/logs/HEAD .git/logs/refs/heads/main]
+915080be36d4d457414adec82b375a8b3b4160bfe57de31104686d3dfb6d70ef: [README.md README.md.dup]
+mars ~/rajeshamdevGIT/lsdups/lsdups $ 
 ```
 
 
