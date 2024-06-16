@@ -40,7 +40,7 @@ func Lsdups() {
 	// TODO: make this as cmd line parameter
 	dir := "."
 
-	// create a thread tha iterates through dir recursively and sends file names
+	// create a thread that iterates through dir recursively and sends file names
 	// to workers. Workers compute checksum. Finally this thread closes the channel
 	// when dir iterate is complete.
 	go dirWalker(dir, tasks)
@@ -68,6 +68,7 @@ func dirWalker(dir string, tasks chan<- Task) {
 		}
 
 		if !info.IsDir() {
+			// send file to worker threads
 			tasks <- Task{FilePath: path}
 		}
 		return nil
