@@ -11,7 +11,7 @@ One goroutine iterates through the directory sending the files to 10 worker goro
 goroutines update the map (which maintains duplicates).
 
 ```
-git clone 
+git clone https://github.com/rajeshamdev/lsdups.git
 go build -mod=vendor -o lsdups main.go
 lsdups ls (this picks up the files from current working dir)
 ```
