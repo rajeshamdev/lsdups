@@ -12,8 +12,8 @@ and updates the map (which maintains duplicates).
 
 ```
 git clone https://github.com/rajeshamdev/lsdups.git
-go build -mod=vendor -o lsdups main.go
-lsdups ls (this picks up the files from current working dir)
+go build -mod=vendor -o dups main.go
+dups ls (this picks up the files from the current working dir)
 ```
 
 
