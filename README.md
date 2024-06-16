@@ -10,6 +10,8 @@ SHA-256 hash. Since SHA-256 hash is unique for file content, this helps to decid
 One goroutine iterates through the directory sending the files to 10 worker goroutines. The worker goroutines compute the SHA-256 of
 a file and updates the map (which maintains duplicates).
 
+**Compile and usage:**
+
 ```
 mars ~/rajeshamdevGIT/lsdups $ git clone https://github.com/rajeshamdev/lsdups.git
 mars ~/rajeshamdevGIT/lsdups $ cd lsdups
@@ -22,6 +24,14 @@ b1119f3b473e9c3fab3fc10c957603778fdc796b869ce34f3b887074fd5fd943: [.git/refs/hea
 28b632f327b4b5ab0d2a673149848e3826bf5d0b6afd5ccdda33a7bda54f0190: [.git/logs/HEAD .git/logs/refs/heads/main]
 915080be36d4d457414adec82b375a8b3b4160bfe57de31104686d3dfb6d70ef: [README.md README.md.dup]
 mars ~/rajeshamdevGIT/lsdups/lsdups $ 
+```
+
+**Computing sha-256 of a file:**
+```
+mars ~/ $ shasum -a 256 README.md README.md.dup
+915080be36d4d457414adec82b375a8b3b4160bfe57de31104686d3dfb6d70ef  README.md.dup
+915080be36d4d457414adec82b375a8b3b4160bfe57de31104686d3dfb6d70ef  README.md
+mars ~/ $
 ```
 
 
