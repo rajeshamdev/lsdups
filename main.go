@@ -1,8 +1,7 @@
 package main
 
-import "github.com/rajeshamdev/lsdups/lsdups"
+import "github.com/rajeshamdev/lsdups/cmd"
 
 func main() {
-
-    lsdups.Lsdups()
+	cmd.Execute()
 }
