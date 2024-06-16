@@ -1,3 +1,3 @@
-module github.com/rajeshamdev/lsdup
+module github.com/rajeshamdev/lsdups
 
 go 1.19
