@@ -20,7 +20,13 @@ const (
 	cksumWorkersCount = 10
 )
 
+// map to hold dups. proect by lock for concurrent write.
+var dupsMap map[string][]string
+var dupsMapMutex sync.Mutex
+
 func Lsdups() {
+
+	dupsMap = make(map[string][]string)
 
 	tasks := make(chan Task, cksumWorkersCount)
 	var cksumWorkerGroup sync.WaitGroup
@@ -44,6 +50,13 @@ func Lsdups() {
 	fmt.Printf("CPUs : %v\n", runtime.NumCPU())
 	fmt.Printf("Goroutines : %v\n", runtime.NumGoroutine())
 	fmt.Printf("all tasks processed\n")
+
+	for k, v := range dupsMap {
+		// print if there are any dups
+		if len(v) > 1 {
+			fmt.Printf("%v: %v\n", k, v)
+		}
+	}
 }
 
 func dirWalker(dir string, tasks chan<- Task) {
@@ -71,7 +84,10 @@ func cksumWorker(id int, tasks <-chan Task, wg *sync.WaitGroup) {
 
 	for task := range tasks {
 		cksum, _ := computeCksum(task.FilePath)
-		fmt.Printf("%s, worker: %d, checksum: %s\n", task.FilePath, id, cksum)
+		dupsMapMutex.Lock()
+		dupsMap[cksum] = append(dupsMap[cksum], task.FilePath)
+		dupsMapMutex.Unlock()
+		//fmt.Printf("%s, worker: %d, checksum: %s\n", task.FilePath, id, cksum)
 	}
 
 	wg.Done()
