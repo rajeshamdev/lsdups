@@ -1,4 +1,5 @@
-// go run -race workerPool.go
+// go build -race -gcflags="-m -l" -o workerPool workerPool.go 
+
 package main
 
 import (
