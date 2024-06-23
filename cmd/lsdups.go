@@ -11,7 +11,8 @@ var ls = &cobra.Command{
 	Short: "List duplicate files",
 	Long:  "Iterates recursively through a dir finding checksum of files and list duplicates.",
 	Run: func(cmd *cobra.Command, args []string) {
-		lsdups.Lsdups()
+		dirPath, _ := rootCmd.Flags().GetString("dir")
+		lsdups.Lsdups(dirPath)
 	},
 }
 

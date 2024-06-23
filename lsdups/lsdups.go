@@ -24,7 +24,12 @@ const (
 var dupsMap map[string][]string
 var dupsMapMutex sync.Mutex
 
-func Lsdups() {
+func Lsdups(dirPath string) {
+
+	if dirPath == "" {
+		fmt.Printf("Please select a directory and rerun \n")
+		return
+	}
 
 	dupsMap = make(map[string][]string)
 
@@ -37,13 +42,10 @@ func Lsdups() {
 		go cksumWorker(i, tasks, &cksumWorkerGroup)
 	}
 
-	// TODO: make this as cmd line parameter
-	dir := "."
-
 	// create a thread that iterates through dir recursively and sends file names
 	// to workers. Workers compute checksum. Finally this thread closes the channel
 	// when dir iterate is complete.
-	go dirWalker(dir, tasks)
+	go dirWalker(dirPath, tasks)
 
 	cksumWorkerGroup.Wait()
 

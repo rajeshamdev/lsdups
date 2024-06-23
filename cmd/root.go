@@ -8,7 +8,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "lsdups",
+	Use:   "dups",
 	Short: "List duplicate files",
 	Long:  `Iterates recursively through a dir finding checksum of files and list duplicates.`,
 	// Uncomment the following line if your bare application
@@ -35,4 +35,5 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.PersistentFlags().StringP("dir", "d", "", "dir path")
 }
