@@ -15,7 +15,9 @@ a file and updates the map (which maintains duplicates).
 ```
 mars ~/ $ git clone https://github.com/rajeshamdev/lsdups.git
 mars ~/ $ cd lsdups
-mars ~/ $ go build -mod=vendor -o dups main.go
+mars ~/ $ make build
+go build -mod vendor -o dups main.go
+mars ~/ $
 mars ~/ $ ./dups ls -d .
 CPUs : 8
 Goroutines : 1
