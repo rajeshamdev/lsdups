@@ -35,8 +35,8 @@ func lsdupInit() {
 
 	lsdupRouter := gin.Default()
 	lsdupRouter.Use(gin.Logger())
-	lsdupRouter.GET("/v1/api/dups", api.LsdupGet)
-	lsdupRouter.GET("/v1/api/health", api.LsdupHealth)
+	lsdupRouter.GET("/v1/api/dups/list", api.LsdupGet)
+	lsdupRouter.GET("/v1/api/dups/health", api.LsdupHealth)
 	// lsdupRouter.DELETE("/v1/api/lsdup/delete", api.lsdupDelete)
 	lsdupRouter.POST("/v1/api/dups/shutdown", api.LsdupShutdown)
 

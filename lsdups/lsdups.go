@@ -24,11 +24,11 @@ const (
 var dupsMap map[string][]string
 var dupsMapMutex sync.Mutex
 
-func Lsdups(dirPath string) {
+func Lsdups(dirPath string) map[string][]string {
 
 	if dirPath == "" {
 		fmt.Printf("Please select a directory and rerun \n")
-		return
+		return nil
 	}
 
 	dupsMap = make(map[string][]string)
@@ -57,8 +57,12 @@ func Lsdups(dirPath string) {
 		// print if there are any dups
 		if len(v) > 1 {
 			fmt.Printf("%v: %v\n", k, v)
+		} else {
+			delete(dupsMap, k)
 		}
 	}
+
+	return dupsMap
 }
 
 func dirWalker(dir string, tasks chan<- Task) {
