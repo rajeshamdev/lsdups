@@ -16,7 +16,6 @@ import (
 
 var (
 	lsdupHTTPServer    *http.Server
-	sigChan            chan os.Signal
 	lsdupGoRoutinesCnt int
 	lsdupGoRoutinesWG  sync.WaitGroup
 )
@@ -31,8 +30,8 @@ func lsdupInit() {
 	//   - SIGHUP (reload config)
 	//   - SIGTERM (graceful shutdown)
 	//   - SIGCHLD (handle child processes sending signal to parent) - ignore for now
-	sigChan = make(chan os.Signal, 1)
-	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM, syscall.SIGCHLD)
+	api.SigChan = make(chan os.Signal, 1)
+	signal.Notify(api.SigChan, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM, syscall.SIGCHLD)
 
 	lsdupRouter := gin.Default()
 	lsdupRouter.Use(gin.Logger())
@@ -63,7 +62,7 @@ func signalHandler() {
 	for {
 		select {
 
-		case sig := <-sigChan:
+		case sig := <-api.SigChan:
 
 			if sig == syscall.SIGCHLD {
 				continue

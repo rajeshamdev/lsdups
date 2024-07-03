@@ -2,8 +2,14 @@ package api
 
 import (
 	"net/http"
+	"os"
+	"syscall"
 
 	"github.com/gin-gonic/gin"
+)
+
+var (
+	SigChan chan os.Signal
 )
 
 func LsdupHealth(c *gin.Context) {
@@ -18,5 +24,5 @@ func LsdupGet(c *gin.Context) {
 
 func LsdupShutdown(c *gin.Context) {
 
-	// sigChan <- syscall.SIGINT
+	SigChan <- syscall.SIGINT
 }
