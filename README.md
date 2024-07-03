@@ -36,4 +36,21 @@ mars ~/ $ shasum -a 256 README.md README.md.dup
 mars ~/ $
 ```
 
+There is also REST API server writtne in golang:
+```
+mars ~/ $ make server
+go build -mod vendor -o server server.go
+mars ~/ $
+mars ~/ $ ./server
 
+Implemented 3 REST APIs:
+    1) GET /v1/api/dups/list: list duplicate files (takes dir query param)
+    2) GET /v1/api/dups/health: checks the health of the REST API server
+    3) POST /v1/api/dups/shutdown: shutdown the REST API server by sending SIGINT signal
+    
+Testing:
+      curl -X GET localhost:8080/v1/api/dups/list?dir="." | python3 -m json.tool
+      curl -X GET localhost:8080/v1/api/dups/health | python3 -m json.tool
+      curl -X POST localhost:8080/v1/api/dups/shutdown | python3 -m json.tool
+
+```
