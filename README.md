@@ -36,7 +36,7 @@ mars ~/ $ shasum -a 256 README.md README.md.dup
 mars ~/ $
 ```
 
-There is also REST API server writtne in golang:
+There is also REST API server written in golang:
 ```
 mars ~/ $ make server
 go build -mod vendor -o server server.go
