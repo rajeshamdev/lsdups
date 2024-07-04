@@ -1,6 +1,6 @@
 # List Duplicate Files or Objects
 
-**Problem statement**: The idea of building this tool is conceived out of personal necessity. I wanted a tool that provides
+**Motivation**: Building this tool is conceived out of personal necessity. I wanted a tool that provides
 insights into files of a directory. I have machines where we duplicated copies from our digital SLR camera. But, it was
 very messy and unambiguous to figure out which pics were copied multiple times. We want to be very careful in sorting and then
 deleting the pics as they were precious memories of our family. So, I wanted an algorithmically proven way to list duplicates.
